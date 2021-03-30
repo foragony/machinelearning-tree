@@ -34,7 +34,13 @@ print(bbb)
 for i in range(3):
     # aaa = []
     bbb[i].append(525)
+    bbb[i].append(55)
+    bbb[i].append(2)
+bbb = np.array(bbb)
+x = np.delete(bbb, 1, axis=1)
 print(bbb)
+print(x)
+print((x[0, :]==x[1, :]).all())
 # print(bbb[1][1:])
 # 利用函数递归创建决策树
 # dataSet：数据集

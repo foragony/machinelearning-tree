@@ -88,6 +88,47 @@ def ContinuationGain(_data, _label, _value):
     return _result
 
 
+def CheckSame(_data, _attribute_label):
+    """
+
+    :param _data: ndarry
+    :param _attribute_label:
+    :return:
+    """
+    _length = len(_attribute_label)
+    for i in range(_length - 1):
+        if (_data[i, :] == _data[i + 1, :]).all():
+            pass
+        else:
+            return False
+    return True
+
+
+def BestAttribute(_data, _label, _attribute, _attribute_label):
+    """
+    选出最佳的属性
+    :param _data:
+    :param _label:
+    :param _attribute:
+    :param _attribute_label:
+    :return:
+    """
+
+
+def TreeGenerate(_data, _label, _attribute, _attribute_label):
+    if _label.count(1) == 0:
+        return 0
+    elif _label.count(0) == 0:
+        return 1
+    if _attribute_label is None or CheckSame(_data, _attribute_label):
+        if _label.count(1) > _label.count(0):
+            return 1
+        else:
+            return 0
+    for i in range(len(_attribute_label)):
+
+
+
 data = [["青绿", "蜷缩", "浊响", "清晰", "凹陷", "硬滑", 0.697],
         ["乌黑", "蜷缩", "沉闷", "清晰", "凹陷", "硬滑", 0.774],
         ["乌黑", "蜷缩", "浊响", "清晰", "凹陷", "硬滑", 0.634],
@@ -108,13 +149,13 @@ data = [["青绿", "蜷缩", "浊响", "清晰", "凹陷", "硬滑", 0.697],
 data = np.array(data)
 label = [1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0]
 # 属性集a
-a = [["青绿", "乌黑", "浅白"],
+attribute = [["青绿", "乌黑", "浅白"],
      ["蜷缩", "稍蜷", "硬挺"],
      ["浊响", "沉闷", "清脆"],
      ["清晰", "稍糊", "模糊"],
      ["凹陷", "稍凹", "平坦"],
      ["硬滑", "软粘"]]
-a_label = ["色泽", "根蒂", "敲声", "纹理", "脐部", "触感", "密度"]
+attribute_label = ["色泽", "根蒂", "敲声", "纹理", "脐部", "触感", "密度"]
 
 # 密度连续值求最优
 # 密度划分点候选值
